@@ -1,0 +1,52 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=windows-1252"/>
+        <title>Home</title>
+    </head>
+    <body>
+        <select id="sel">
+        	<option value="111">sadadad</option>
+        </select>
+        <!-- JS Magic -->
+        <script type="text/javascript" src="http://localhost:8008/rjsapi/rjsapi/rjsapi.js">
+        </script>
+        <script>
+            //ritbox.base('rjsapi/libs');
+            
+            ritbox.load(
+            {
+                'lib': 'jquery',
+                'version': '1.4.2'
+            });
+        </script>
+        <script type="text/javascript" src="joption.js">
+        </script>
+        <script type="text/javascript">
+            
+            $(document).ready(function(){
+
+var datostmp = {
+	"Value 12" : "Text 122",
+	"Value 23" : "Text 233",
+	"Value 34" : "Text 344"
+}
+
+                $('#sel').addOptions(
+                {
+                    "url": 'datos.json',
+					//"data" : datostmp,
+                    //"callback": resultado,
+					"selected" : 'Vaalue 2'
+                });
+				
+				$('#sel').addOption('1','2sada', true);
+            });
+            
+            function resultado(status){
+                alert('Carga finalizada: ' + status);
+            }
+        </script>
+        <!-- /JS Magic -->
+    </body>
+</html>
