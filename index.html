@@ -2,51 +2,124 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=windows-1252"/>
-        <title>Home</title>
-    </head>
-    <body>
-        <select id="sel">
-        	<option value="111">sadadad</option>
-        </select>
-        <!-- JS Magic -->
-        <script type="text/javascript" src="http://localhost:8008/rjsapi/rjsapi/rjsapi.js">
-        </script>
-        <script>
-            //ritbox.base('rjsapi/libs');
-            
-            ritbox.load(
-            {
-                'lib': 'jquery',
-                'version': '1.4.2'
-            });
-        </script>
-        <script type="text/javascript" src="joption.js">
-        </script>
+        <title>jOption example</title>
+
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+        <script type="text/javascript" src="joption.js"></script>
+
+
         <script type="text/javascript">
-            
+
             $(document).ready(function(){
 
-var datostmp = {
-	"Value 12" : "Text 122",
-	"Value 23" : "Text 233",
-	"Value 34" : "Text 344"
-}
-
-                $('#sel').addOptions(
-                {
-                    "url": 'datos.json',
-					//"data" : datostmp,
-                    //"callback": resultado,
-					"selected" : 'Vaalue 2'
+                var jsondata = { // value : text
+                    '1':'option 1',
+                    '2':'option 2',
+                    '3':'option 3',
+                    '4':'option 4'
+                }
+                
+                $('#select_local').addOptions({
+                    data : jsondata
                 });
-				
-				$('#sel').addOption('1','2sada', true);
+
+                $('#select_file').addOptions({
+                    url : 'data.json'
+                });
+
+                $('#select_manual').addOption('1','m option 1', false);
+                $('#select_manual').addOption('2','m option 2', true);
+
+
+                $('#lnk_load').click(function(){
+                    $('#select_file_callback').addOptions({
+                        url : 'data.json',
+                        callback : callbackResult,
+                        selected : 2
+                    });
+                    return false;
+                });
             });
-            
-            function resultado(status){
-                alert('Carga finalizada: ' + status);
+
+            function callbackResult(status){
+                alert('Loaded: ' + status);
             }
         </script>
-        <!-- /JS Magic -->
+
+
+    </head>
+    <body>
+        <p>
+            Welcome, this is an example for joption usage:
+        </p>
+        <p>
+            This jQuery library provide us a easy way to load select options from json datasource.
+        </p>
+
+        <p>
+            It can be loaded from a local JSON variable or from an external JSON datasource.
+        </p>
+
+        <h3>From local variable</h3>
+        <select id="select_local">
+        	<option value="0">Select one...</option>
+        </select>
+
+        <pre>
+var jsondata = { // value : text
+    '1':'option 1',
+    '2':'option 2',
+    '3':'option 3',
+    '4':'option 4'
+}
+
+$('#select_local').addOptions({
+    data : jsondata
+});
+        </pre>
+
+
+        <h3>From JSON File data.json</h3>
+        <select id="select_file">
+        	<option value="0">Select one...</option>
+        </select>
+
+        <pre>
+$('#select_file').addOptions({
+    url : 'data.json'
+});
+        </pre>
+
+
+        <h3>Manually option load</h3>
+        <select id="select_manual">
+        	<option value="0">Select one...</option>
+        </select>
+
+        <pre>
+// ( value, text, selected:boolean)
+$('#select_manual').addOption('1','m option 1', false);
+$('#select_manual').addOption('2','m option 2', true);
+        </pre>
+
+
+        <h3>From JSON File data.json with callback function</h3>
+        <select id="select_file_callback">
+        	<option value="0">Select one...</option>
+        </select>
+        <a href="#" id="lnk_load">click to load data</a>
+        <pre>
+$('#lnk_load').click(function(){
+    $('#select_file_callback').addOptions({
+        url : 'data.json',
+        callback : callbackResult,
+        selected : 2 // select value 2 if exist
+    });
+    return false;
+});
+        </pre>
+
+        <hr/>
+        Developed by: Diego Guevara - diegoagc ( at) gmail.com
     </body>
 </html>

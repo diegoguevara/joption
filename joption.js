@@ -26,7 +26,7 @@
 
 
         var obj = this;
-        var value_active = '';
+        //var value_active = '';
 
         if (options.url != '')
         {
