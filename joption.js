@@ -1,11 +1,12 @@
 /*!
-* @(#) jOption jQuery plugin v1.0.1
+* @(#) jOption jQuery plugin v1.2.0
 * http://www.ritbox.com
 *
-* Copyright 2011, Diego Guevara - Ritbox Ltda.
+* Copyright 2010, Diego Guevara - Ritbox Ltda.
 * Released under dual licensed under the MIT or GPL Version 2 licenses.
 *
 * Creation Date: Jun.02.2010
+* Last Update: Jul.06.2010
 * Last Update: Jan.28.2010
 */
 
@@ -16,6 +17,8 @@
         {
             url: '',
             data: '',
+            params : '',
+            method : 'GET',
             selected: '',
             callback: ''
         };
@@ -32,9 +35,10 @@
         {
             $.ajax(
             {
-                type: "GET",
+                type: options.method,
                 url: options.url,
                 dataType: 'json',
+                data : options.params,
                 cache: false,
                 success: function(data){
                     loadOptions(obj, data, options);
