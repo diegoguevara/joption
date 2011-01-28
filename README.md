@@ -8,6 +8,17 @@ It can be loaded from a local JSON variable or from an external JSON datasource.
 
 ### Requires jQuery 1.4x
 
+## jOption options
+
+     $('#select_local').addOptions({
+        data        : jsondata,             // json data, is not requiered if using ajax
+        url         : 'data.json',          // url from json file or dymanic json source
+        callback    : callbackResult,       // callback method called when ajax call ends
+        selected    : 2,                    // combo selected value if exist
+        params      : {id:2, info:'abc'},   // ajax params in json format
+        method      : 'POST'                // ajax call method, default GET
+     });
+
 
 ## From local variable
 
