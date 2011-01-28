@@ -1,12 +1,12 @@
 /*!
-* @(#) jOption jQuery plugin v1.0.0
+* @(#) jOption jQuery plugin v1.0.1
 * http://www.ritbox.com
 *
-* Copyright 2010, Diego Guevara - Ritbox Ltda.
+* Copyright 2011, Diego Guevara - Ritbox Ltda.
 * Released under dual licensed under the MIT or GPL Version 2 licenses.
 *
 * Creation Date: Jun.02.2010
-* Last Update: Jul.06.2010
+* Last Update: Jan.28.2010
 */
 
  (function($){
