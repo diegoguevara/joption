@@ -60,4 +60,3 @@ It can be loaded from a local JSON variable or from an external JSON datasource.
         });
         return false;
     });
-        
