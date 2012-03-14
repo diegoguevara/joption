@@ -19,14 +19,14 @@
             method      : 'GET',    // ajax method
             selected    : '',       // selected value
             complete    : '',       // complete function()
-            clear       : true      // clear select before add options
+            empty       : true      // clear select before add options
         };
 
         options = $.extend(defaults, options);
 
         var obj = this;
 
-        if (options.clear){ // clear select
+        if (options.empty){ // empty select
             obj.empty();
         }
 
@@ -67,15 +67,15 @@
 
     var loadOptions = function(obj, data, options){
 
-        $.each(data,
-        function(thevalue, thetext){
-            selvalue = (thevalue == options.selected) ? "selected": "";
-            value_active = '<option value="' + thevalue + '"' + selvalue + '>';
-            value_active += thetext;
-            value_active += '</option>';
+        var opt_        = '';
+        var sel_option  = '';
 
-            obj.append(value_active);
-
+        $.each(data, function(index, obj_){
+            sel_option = (obj_.value == options.selected) ? "selected": "";
+            opt_ = '<option value="' + obj_.value + '"' + obj_.text + '>';
+            opt_ += obj_.text;
+            opt_ += '</option>';
+            obj.append(opt_);
         });
     }
 })(jQuery);

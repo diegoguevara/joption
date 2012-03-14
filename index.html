@@ -12,15 +12,14 @@
 
             $(document).ready(function(){
 
-                var jsondata = { // value : text
-                    '1':'option 1',
-                    '2':'option 2',
-                    '3':'option 3',
-                    '4':'option 4'
-                }
+                var jsondata = [
+                    { value:1, text:'this is option 001' },
+                    { value:2, text:'this is option 002' },
+                    { value:3, text:'this is option 003' }
+                ];
                 
                 $('#select_local').addOptions({
-                    data : jsondata
+                    content : jsondata
                 });
 
                 $('#select_file').addOptions({
@@ -66,15 +65,14 @@
         </select>
 
         <pre>
-var jsondata = { // value : text
-    '1':'option 1',
-    '2':'option 2',
-    '3':'option 3',
-    '4':'option 4'
-}
+var jsondata = [
+    { value:1, text:'this is option 001' },
+    { value:2, text:'this is option 002' },
+    { value:3, text:'this is option 003' }
+];
 
 $('#select_local').addOptions({
-    data : jsondata
+    content : jsondata
 });
         </pre>
 
