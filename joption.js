@@ -1,5 +1,5 @@
 /*!
-* @(#) jOption jQuery plugin v1.2.0
+* @(#) jOption jQuery plugin v2.0.0
 *
 * Copyright 2011, Diego Guevara
 * Released under dual licensed under the MIT or GPL Version 2 licenses.
@@ -8,50 +8,51 @@
 * Last Update: Jan.28.2011
 */
 
- (function($){
+(function($){
     $.fn.addOptions = function(options){
 
         var defaults =
         {
-            url: '',
-            data: '',
-            params : '',
-            method : 'GET',
-            selected: '',
-            callback: ''
+            url         : '',       // ajax URL
+            data        : '',       // data ajax params
+            content     : '',       // offline content array
+            method      : 'GET',    // ajax method
+            selected    : '',       // selected value
+            complete    : '',       // complete function()
+            clear       : true      // clear select before add options
         };
-        //var options;
+
         options = $.extend(defaults, options);
 
         var obj = this;
-        //var value_active = '';
 
-        if (options.url != '')
-        {
-            $.ajax(
-            {
-                type: options.method,
-                url: options.url,
+        if (options.clear){ // clear select
+            obj.empty();
+        }
+
+        if (options.url != ''){
+            $.ajax({
+                type    : options.method,
+                url     : options.url,
                 dataType: 'json',
-                data : options.params,
-                cache: false,
-                success: function(data){
-                    loadOptions(obj, data, options);
+                data    : options.data,
+                cache   : false,
+                success : function(data_){
+                    loadOptions(obj, data_, options);
 
-                    if (options.callback != '')
-                    options.callback(true);
+                    if (options.complete != '')
+                        options.complete(true);
                 },
                 error: function(){
-                    if (options.callback != '')
-                    options.callback(false);
+                    if (options.complete != '')
+                        options.complete(false);
                 }
             });
         }
-        else
-        {
-            loadOptions(obj, options.data, options);
-            if (options.callback != '')
-            options.callback(true);
+        else{
+            loadOptions(obj, options.content, options);
+            if (options.complete != '')
+                options.complete(true);
         }
     };
 
@@ -65,7 +66,6 @@
     };
 
     var loadOptions = function(obj, data, options){
-        //obj.html('');
 
         $.each(data,
         function(thevalue, thetext){
