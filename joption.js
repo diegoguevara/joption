@@ -72,7 +72,7 @@
 
         $.each(data, function(index, obj_){
             sel_option = (obj_.value == options.selected) ? "selected": "";
-            opt_ = '<option value="' + obj_.value + '"' + obj_.text + '>';
+            opt_ = '<option value="' + obj_.value + '"' + sel_option + '>';
             opt_ += obj_.text;
             opt_ += '</option>';
             obj.append(opt_);
