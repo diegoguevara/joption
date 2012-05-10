@@ -1,36 +1,35 @@
-## Welcome to the joption wiki!
+# jOption - jQuery Plugin!
 
-This is an example for joption usage:
-
-This jQuery library provide us a easy way to load select options from json datasource.
-
-It can be loaded from a local JSON variable or from an external JSON datasource.
+This jQuery plugin allows dynamically add options into a Select tag using ajax or local JSON data.
 
 ### Requires jQuery 1.4x
 
-## jOption options
+# jOption options
 
      $('#select_local').addOptions({
-        data        : jsondata,             // json data, is not requiered if using ajax
-        url         : 'data.json',          // url from json file or dymanic json source
-        callback    : callbackResult,       // callback method called when ajax call ends
-        selected    : 2,                    // combo selected value if exist
-        params      : {id:2, info:'abc'},   // ajax params in json format
-        method      : 'POST'                // ajax call method, default GET
+        url         : '',       // ajax URL
+        data        : '',       // data ajax params
+        content     : '',       // offline content JSON array
+        method      : 'GET',    // ajax method
+        selected    : '',       // selected value
+        complete    : '',       // complete function()
+        empty       : true      // clear select before add options
      });
 
 
+# Usage:
 ## From local variable
 
-    var jsondata = { // value : text
-        '1':'option 1',
-        '2':'option 2',
-        '3':'option 3',
-        '4':'option 4'
-     }
+    var jsondata = [{
+        'value' : '1',
+        'text'  : 'Option 1'
+     },{
+        'value' : '2',
+        'text'  : 'Option 2'
+     }];
 
      $('#select_local').addOptions({
-        data : jsondata
+        content : jsondata
      });
 
 
@@ -43,7 +42,7 @@ It can be loaded from a local JSON variable or from an external JSON datasource.
 
 ## Manually option load
 
-    // ( value, text, selected:boolean)
+    // addOption( <value>, <text>, <selected:boolean>)
 
     $('#select_manual').addOption('1','m option 1', false);
 
@@ -55,7 +54,7 @@ It can be loaded from a local JSON variable or from an external JSON datasource.
     $('#lnk_load').click(function(){
         $('#select_file_callback').addOptions({
             url : 'data.json',
-            callback : callbackResult,
+            complete : callbackResult, // javascript function
             selected : 2 // select value 2 if exist
         });
         return false;
