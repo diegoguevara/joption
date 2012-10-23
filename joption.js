@@ -1,11 +1,11 @@
 /*!
-* @(#) jOption jQuery plugin v2.0.0
+* @(#) jOption jQuery plugin v2.0.1
 *
 * Copyright 2011, Diego Guevara
 * Released under dual licensed under the MIT or GPL Version 2 licenses.
 *
 * Creation Date: Jun.02.2010
-* Last Update: Jan.28.2011
+* Last Update: Oct.23.2012
 */
 
 (function($){
@@ -26,10 +26,6 @@
 
         var obj = this;
 
-        if (options.empty){ // empty select
-            obj.empty();
-        }
-
         if (options.url != ''){
             $.ajax({
                 type    : options.method,
@@ -38,6 +34,10 @@
                 data    : options.data,
                 cache   : false,
                 success : function(data_){
+                    if (options.empty){ // empty select
+                        obj.empty();
+                    }
+
                     loadOptions(obj, data_, options);
 
                     if (options.complete != '')
